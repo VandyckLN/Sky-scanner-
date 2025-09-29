@@ -1,0 +1,12 @@
+# Sky Scanner - Port Scanner Tool
+# Requirements file for Python dependencies
+
+# No external dependencies required for basic functionality
+# The tool uses only Python standard library modules:
+# - socket
+# - threading
+# - argparse
+# - sys
+# - datetime
+# - time
+# - queue
