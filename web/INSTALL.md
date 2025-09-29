@@ -206,10 +206,20 @@ Para adicionar novos templates, edite o arquivo `js/scanner.js` na função `get
 
 A interface pode ser hospedada em qualquer servidor web estático:
 
-- **GitHub Pages**
-- **Netlify**
-- **Vercel**
-- **Apache/Nginx**
+#### 🌐 GitHub Pages (Configurado)
+
+**Link direto: [https://vandyckln.github.io/Sky-scanner-/](https://vandyckln.github.io/Sky-scanner-/)**
+
+- ✅ **Automaticamente configurado** - deploy automático a cada push
+- ✅ **Sempre atualizado** - sincroniza com o repositório
+- ✅ **HTTPS gratuito** - certificado SSL incluído
+- ✅ **CDN global** - alta performance mundial
+
+#### 🔧 Outras Opções
+
+- **Netlify** - Drag & drop da pasta `/web`
+- **Vercel** - Importar repositório GitHub
+- **Apache/Nginx** - Servir pasta `/web` como DocumentRoot
 
 ### Integração com Backend
 

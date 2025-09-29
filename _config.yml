@@ -1,0 +1,31 @@
+# GitHub Pages configuration
+title: "SKY Verificador de Portas"
+description: "Scanner de portas profissional para cibersegurança com interface web dinâmica"
+lang: pt-br
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+
+# SEO settings
+author: VandyckLN
+twitter:
+  username: VandyckLN
+social:
+  name: VandyckLN
+  links:
+    - https://github.com/VandyckLN
+
+# Exclude files from build
+exclude:
+  - README.md
+  - LICENSE
+  - verificar-hashs/
+  - PORTAS.md
+  - PROJETO-COMPLETO.md
+  - .gitignore
+  - .github/

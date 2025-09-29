@@ -279,6 +279,20 @@ O SKY Verificador de Portas agora inclui uma interface web completa e responsiva
        └── favicon.svg           # Favicon
    ```
 
+#### 🌐 Acesso via GitHub Pages
+
+A interface web está disponível online via GitHub Pages:
+
+**🔗 Link: [https://vandyckln.github.io/Sky-scanner-/](https://vandyckln.github.io/Sky-scanner-/)**
+
+- ✅ **Acesso direto pelo navegador** - sem necessidade de instalação
+- ✅ **Sempre atualizado** - sincronizado automaticamente com o repositório
+- ✅ **Interface completa** - todos os recursos disponíveis
+- ✅ **Dispositivos móveis** - interface responsiva
+- ⚠️ **Modo demonstração** - funcionalidade simulada para segurança
+
+> **💡 Nota:** A versão online funciona em modo demonstração para segurança. Para scanning real, execute localmente conforme instruções acima.
+
 #### 🎯 Templates de Portas Disponíveis
 
 | Template                 | Portas                                                                            | Descrição                  |
