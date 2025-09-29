@@ -1,0 +1,10 @@
+RELATÓRIO DE SCAN DE PORTAS
+Host: google.com
+Data: 2025-09-29 12:30:16
+==================================================
+
+PORTAS ABERTAS:
+Porta 80: HTTP
+
+TOTAL: 1 portas abertas
+TOTAL: 3 portas fechadas
