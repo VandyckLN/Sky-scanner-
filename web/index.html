@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKY Verificador de Portas - Interface Web Dinâmica</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="Scanner de portas profissional para cibersegurança com detecção de sistema operacional">
+    <meta name="keywords" content="port scanner, cibersegurança, network security, SKY">
+    <meta name="author" content="SKY Verificador de Portas">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="../assets/sky-ports-icon-small.svg" alt="SKY Logo" width="48" height="48">
+                <div class="logo-text">
+                    <h1>SKY Verificador</h1>
+                    <p>Scanner de Portas Profissional</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#scanner">🎯 Scanner</a></li>
+                    <li><a href="#templates">📋 Templates</a></li>
+                    <li><a href="#sobre">ℹ️ Sobre</a></li>
+                    <li><a href="https://github.com/VandyckLN/Sky-scanner-/blob/main/README.md">📖 Docs</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>🔐 Verificação de Portas Avançada</h2>
+            <p>
+                Ferramenta profissional para análise de segurança de rede com interface web dinâmica.
+                Detecta portas abertas, identifica serviços automaticamente e analisa sistemas operacionais via TTL.
+            </p>
+            <div style="margin-top: 30px;">
+                <img src="../assets/sky-ports-banner.svg" alt="SKY Banner" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Scanner Inteligente</h3>
+                <p>Verifica portas com validação DNS automática, ping real do sistema e detecção avançada de SO baseada em análise de TTL.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Segurança Profissional</h3>
+                <p>Identifica automaticamente 20+ serviços comuns, gera relatórios detalhados com timestamp e oferece templates para diferentes cenários.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Interface Dinâmica</h3>
+                <p>Interface web responsiva com animações, validação em tempo real, progress tracking e exportação de resultados.</p>
+            </div>
+        </section>
+
+        <!-- Scanner Interface -->
+        <section class="scanner-section" id="scanner">
+            <h2 class="scanner-title">🎯 Interface de Scanning</h2>
+            <div class="scanner-form">
+                <div class="form-group">
+                    <label for="target-host">🌐 Host ou IP de Destino:</label>
+                    <input type="text" id="target-host" class="form-control" 
+                           placeholder="Exemplo: google.com, github.com, 192.168.1.1, 8.8.8.8"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="target-ports">🔌 Portas (separadas por vírgula):</label>
+                    <input type="text" id="target-ports" class="form-control" 
+                           placeholder="Exemplo: 21,22,80,443 ou use um template abaixo ↓"
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" id="show-closed" style="transform: scale(1.2);"> 
+                        <span>👁️ Mostrar portas fechadas nos resultados</span>
+                    </label>
+                </div>
+                <div class="btn-group">
+                    <button class="btn" onclick="startScan()" title="Ctrl + Enter">
+                        🚀 Iniciar Scan Personalizado
+                    </button>
+                    <button class="btn btn-success" onclick="quickScan()">
+                        ⚡ Scan Rápido (Top 20)
+                    </button>
+                    <button class="btn btn-secondary" onclick="pingTest()">
+                        🏓 Teste de Ping + OS
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p><strong>🔍 Escaneando portas...</strong></p>
+                <p style="font-size: 0.9rem; color: #666;">Aguarde enquanto analisamos o host</p>
+            </div>
+
+            <!-- Results -->
+            <div class="results" id="results">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3>📊 Resultados do Scan</h3>
+                    <button class="btn btn-secondary" onclick="exportResults()" style="padding: 8px 15px; font-size: 0.9rem;">
+                        📄 Exportar
+                    </button>
+                </div>
+                <div id="results-content"></div>
+            </div>
+        </section>
+
+        <!-- Port Templates -->
+        <section class="port-templates" id="templates">
+            <h2>📋 Templates de Portas Prontos para Usar</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 30px;">
+                Clique em qualquer template para copiar automaticamente as portas
+            </p>
+            <div class="templates-grid">
+                <div class="template-card" onclick="useTemplate('basic')" title="Clique para usar este template">
+                    <h4>🔥 TOP 10 - Essenciais</h4>
+                    <div class="template-ports">21,22,23,25,53,80,135,443,445,3389</div>
+                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">FTP, SSH, Telnet, SMTP, DNS, HTTP, RPC, HTTPS, SMB, RDP</p>
+                </div>
+                <div class="template-card" onclick="useTemplate('common')" title="Clique para usar este template">
+                    <h4>⭐ TOP 20 - Comuns</h4>
+                    <div class="template-ports">21,22,23,25,53,80,110,135,139,143,443,445,993,995,1433,3306,3389,5432,5900,8080</div>
+                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">Inclui POP3, NetBIOS, IMAP, MySQL, PostgreSQL, VNC</p>
+                </div>
+                <div class="template-card" onclick="useTemplate('web')" title="Clique para usar este template">
+                    <h4>🌐 Web & HTTP</h4>
+                    <div class="template-ports">80,443,8000,8080,8081,8443,8888,9000,9001,9090</div>
+                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">Serviços web, proxies HTTP e portas alternativas</p>
+                </div>
+                <div class="template-card" onclick="useTemplate('database')" title="Clique para usar este template">
+                    <h4>💾 Bancos de Dados</h4>
+                    <div class="template-ports">1433,1434,3306,5432,6379,27017,1521,5984</div>
+                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">SQL Server, MySQL, PostgreSQL, Redis, MongoDB, Oracle</p>
+                </div>
+                <div class="template-card" onclick="useTemplate('remote')" title="Clique para usar este template">
+                    <h4>🔒 Acesso Remoto</h4>
+                    <div class="template-ports">22,23,3389,5900,5901</div>
+                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">SSH, Telnet, RDP, VNC</p>
+                </div>
+                <div class="template-card" onclick="useTemplate('security')" title="Clique para usar este template">
+                    <h4>🔐 Segurança/Pentest</h4>
+                    <div class="template-ports">21,22,23,25,53,80,135,139,443,445,993,995,1433,3306,3389,5432,5900,8080</div>
+                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">Conjunto otimizado para testes de penetração</p>
+                </div>
+                <div class="template-card" onclick="useTemplate('email')" title="Clique para usar este template">
+                    <h4>📧 Serviços de Email</h4>
+                    <div class="template-ports">25,110,143,465,587,993,995</div>
+                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">SMTP, POP3, IMAP, versões seguras</p>
+                </div>
+                <div class="template-card" onclick="useTemplate('development')" title="Clique para usar este template">
+                    <h4>💻 Desenvolvimento</h4>
+                    <div class="template-ports">3000,3001,4000,5000,5001,8000,8080,8081,9000,9001,9090</div>
+                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">Node.js, Python, Ruby, servidores de desenvolvimento</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Section -->
+        <section class="scanner-section" id="sobre">
+            <h2 class="text-center" style="color: var(--sky-primary); margin-bottom: 30px;">
+                ℹ️ Sobre o SKY Verificador de Portas
+            </h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="result-item result-info">
+                    <h4>🎯 <strong>Objetivo</strong></h4>
+                    <p>Ferramenta educacional e profissional para análise de segurança de rede, desenvolvida para fortalecer a comunidade de cibersegurança com recursos avançados e interface intuitiva.</p>
+                </div>
+                
+                <div class="result-item">
+                    <h4>🆕 <strong>Recursos Principais</strong></h4>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li><strong>Detecção de SO via TTL:</strong> Identifica Windows, Linux/Unix e dispositivos de rede</li>
+                        <li><strong>Validação Inteligente:</strong> Suporte a DNS e IP com verificação automática</li>
+                        <li><strong>Templates Prontos:</strong> 8 conjuntos de portas para diferentes cenários</li>
+                        <li><strong>Interface Dinâmica:</strong> Animações, validação em tempo real e progress tracking</li>
+                        <li><strong>Relatórios Detalhados:</strong> Exportação de resultados com timestamp</li>
+                    </ul>
+                </div>
+                
+                <div class="result-item" style="border-left-color: #053cb39c; background: linear-gradient(135deg, #025bffb9 0%, #0212f3 100%);">
+                    <h4>⚠️ <strong>Uso Ético e Responsável</strong></h4>
+                    <p><strong>IMPORTANTE:</strong> Esta ferramenta deve ser usada apenas em redes próprias ou com autorização explícita. O uso indevido pode ser ilegal. Sempre obtenha permissão antes de escanear sistemas de terceiros.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>🔐 <strong>SKY Verificador de Portas v2.0</strong> - Interface Web Dinâmica</p>
+        <p>Desenvolvido para profissionais de cibersegurança com foco em educação e uso ético</p>
+        <div class="footer-links">
+            <a href="#scanner">🎯 Scanner</a>
+            <a href="#templates">📋 Templates</a>
+            <a href="#sobre">ℹ️ Sobre</a>
+            <a href="../README.md">📖 Documentação</a>
+            <a href="https://github.com/VandyckLN/Sky-scanner-" target="_blank">🐙 GitHub</a>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+            ⚡ desenvolvido por VandyckLN | SKY é uma marca registrada. Use com responsabilidade! 2025
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/scanner.js"></script>
+    
+    <!-- Keyboard Shortcuts Info -->
+    <div style="position: fixed; bottom: 20px; left: 20px; background: rgba(0,0,0,0.8); color: white; padding: 10px 15px; border-radius: 8px; font-size: 0.8rem; z-index: 1000; opacity: 0.7; transition: opacity 0.3s ease;" 
+         onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">
+        ⌨️ <strong>Atalhos:</strong> Ctrl+Enter (Scan) • Esc (Cancelar)
+    </div>
+
+    <script>
+        // Smooth scrolling para todas as âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Easter egg - Konami Code
+        let konamiCode = [];
+        const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+        
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.keyCode);
+            if (konamiCode.length > konami.length) {
+                konamiCode.shift();
+            }
+            
+            if (konamiCode.length === konami.length && konamiCode.every((code, i) => code === konami[i])) {
+                // Easter egg ativado!
+                document.body.style.transform = 'rotate(1deg)';
+                setTimeout(() => {
+                    document.body.style.transform = 'rotate(-1deg)';
+                    setTimeout(() => {
+                        document.body.style.transform = 'rotate(0deg)';
+                        if (window.skyScanner) {
+                            skyScanner.showNotification('🎉 Easter Egg Encontrado! SKY é incrível!', 'success');
+                        }
+                    }, 200);
+                }, 200);
+                konamiCode = [];
+            }
+        });
+
+        // Analytics de uso (simulado)
+        console.log('🔐 SKY Verificador de Portas v2.0 - Interface Web Carregada');
+        console.log('⚡ Sistema pronto para scanning de rede');
+        console.log('🛡️ Lembre-se: Use apenas em redes próprias ou com autorização!');
+    </script>
+</body>
+</html>
+        

@@ -70,9 +70,45 @@ class PortScanner:
         except socket.gaierror as e:
             return False, f"Erro ao resolver DNS: {e}"
 
+    def detectar_os_por_ttl(self, ttl):
+        """
+        Detecta o possível sistema operacional baseado no valor TTL
+        """
+        if ttl <= 64:
+            if ttl <= 32:
+                return "🐧 Linux/Unix (TTL ≤ 32)"
+            else:
+                return "🐧 Linux/Unix (TTL ≤ 64)"
+        elif ttl <= 128:
+            return "🪟 Windows (TTL ≤ 128)"
+        elif ttl <= 255:
+            return "🍎 Cisco/Network Device (TTL ≤ 255)"
+        else:
+            return "❓ Desconhecido"
+
+    def extrair_ttl_do_ping(self, saida_ping):
+        """
+        Extrai o valor TTL da saída do comando ping
+        """
+        # Busca por padrões TTL em diferentes formatos
+        ttl_patterns = [
+            r"ttl=(\d+)",  # Linux/Unix/macOS
+            r"ttl:(\d+)",  # Algumas variações
+            r"tempo de vida=(\d+)",  # Windows em português
+            r"time to live=(\d+)",  # Windows em inglês
+        ]
+
+        for pattern in ttl_patterns:
+            match = re.search(pattern, saida_ping.lower())
+            if match:
+                return int(match.group(1))
+
+        return None
+
     def ping_host(self, host):
         """
         Verifica se o host está online usando ping REAL do sistema operacional
+        e detecta o possível sistema operacional do host
         """
         print(f"🏓 Testando conectividade com {host}...")
 
@@ -101,11 +137,21 @@ class PortScanner:
 
             # Analisa a saída do ping
             saida = resultado.stdout.lower()
+            # Mantém formatação original para TTL
+            saida_completa = resultado.stdout
 
             if sistema == "windows":
                 # No Windows, procura por "perdidos = 0" ou "ttl="
                 if "perdidos = 0" in saida or "ttl=" in saida:
                     print("✅ Host respondeu ao ping")
+
+                    # Detecta sistema operacional do host
+                    ttl = self.extrair_ttl_do_ping(saida_completa)
+                    if ttl:
+                        os_detectado = self.detectar_os_por_ttl(ttl)
+                        print(f"🔍 SO provável: {os_detectado}")
+                        print(f"📊 TTL detectado: {ttl}")
+
                     return True
                 else:
                     print("❌ Host não respondeu ao ping")
@@ -114,6 +160,14 @@ class PortScanner:
                 # Em sistemas Unix-like, verifica o código de retorno
                 if resultado.returncode == 0:
                     print("✅ Host respondeu ao ping")
+
+                    # Detecta sistema operacional do host
+                    ttl = self.extrair_ttl_do_ping(saida_completa)
+                    if ttl:
+                        os_detectado = self.detectar_os_por_ttl(ttl)
+                        print(f"🔍 SO provável: {os_detectado}")
+                        print(f"📊 TTL detectado: {ttl}")
+
                     return True
                 else:
                     print("❌ Host não respondeu ao ping")
@@ -272,6 +326,7 @@ def main():
         print("2. Escanear portas em um host")
         print("3. Scan rápido (portas comuns)")
         print("4. Teste de ping")
+        print("6. 📋 Modelos de portas prontas")
         print("5. Sair")
 
         opcao = input("\nOpção: ").strip()
@@ -279,6 +334,7 @@ def main():
         if opcao == "1":
             # Modo original - enumerar serviços
             print("\nDigite as portas separadas por vírgula:")
+            print("💡 Dica: Use a opção 6 para ver modelos prontos!")
             print(
                 "Exemplo: 21,22,23,25,53,80,110,135,139,143,443,445,993,995,1433,3306,3389,5432,5900,6379,8080"
             )
@@ -364,9 +420,45 @@ def main():
 
             host_original, ip_host = scanner.processar_host(host)
             if ip_host:
-                print(f"Testando conectividade com {host_original} "
-                      f"({ip_host})")
+                print(f"Testando conectividade com {host_original} ({ip_host})")
                 scanner.ping_host(ip_host)
+
+        elif opcao == "6":
+            # Modelos de portas prontas
+            print("\n📋 MODELOS DE PORTAS PRONTAS PARA COPIAR:")
+            print("=" * 50)
+
+            print("\n🔥 TOP 10 - PORTAS ESSENCIAIS:")
+            print("21,22,23,25,53,80,135,443,445,3389")
+
+            print("\n⭐ TOP 20 - PORTAS COMUNS:")
+            print(
+                "21,22,23,25,53,80,110,135,139,143,443,445,993,995,"
+                + "1433,3306,3389,5432,5900,8080"
+            )
+
+            print("\n🌐 WEB E HTTP:")
+            print("80,443,8000,8080,8081,8443,8888,9000,9001,9090")
+
+            print("\n💾 BANCOS DE DADOS:")
+            print("1433,1434,3306,5432,6379,27017,1521,5984")
+
+            print("\n🔒 ACESSO REMOTO:")
+            print("22,23,3389,5900,5901")
+
+            print("\n📧 EMAIL:")
+            print("25,110,143,465,587,993,995")
+
+            print("\n🔐 SEGURANÇA/PENTEST:")
+            print(
+                "21,22,23,25,53,80,135,139,443,445,993,995,"
+                + "1433,3306,3389,5432,5900,8080"
+            )
+
+            print("\n💻 DESENVOLVIMENTO:")
+            print("3000,3001,4000,5000,5001,8000,8080,8081,9000,9001,9090")
+
+            print("\n💡 Copie qualquer linha acima e use nas opções 1 ou 2!")
 
         elif opcao == "5":
             print("👋 Saindo...")

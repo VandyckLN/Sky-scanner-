@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="62" fill="#55c2d6" stroke="#4a9fb5" stroke-width="4"/>
+  
+  <!-- Sky elements (clouds) -->
+  <g fill="#ffffff" opacity="0.9">
+    <!-- Cloud 1 -->
+    <ellipse cx="35" cy="30" rx="8" ry="5"/>
+    <ellipse cx="40" cy="28" rx="6" ry="4"/>
+    <ellipse cx="45" cy="30" rx="7" ry="5"/>
+    
+    <!-- Cloud 2 -->
+    <ellipse cx="85" cy="25" rx="6" ry="4"/>
+    <ellipse cx="90" cy="23" rx="5" ry="3"/>
+    <ellipse cx="94" cy="25" rx="6" ry="4"/>
+  </g>
+  
+  <!-- Network/Port scanning elements -->
+  <g stroke="#ffffff" stroke-width="2" fill="none">
+    <!-- Central node (representing the scanning point) -->
+    <circle cx="64" cy="64" r="8" fill="#ffffff"/>
+    
+    <!-- Scanning rays/connections -->
+    <line x1="64" y1="64" x2="40" y2="45" stroke-dasharray="4,2"/>
+    <line x1="64" y1="64" x2="88" y2="45" stroke-dasharray="4,2"/>
+    <line x1="64" y1="64" x2="45" y2="85" stroke-dasharray="4,2"/>
+    <line x1="64" y1="64" x2="83" y2="85" stroke-dasharray="4,2"/>
+    <line x1="64" y1="64" x2="30" y2="64" stroke-dasharray="4,2"/>
+    <line x1="64" y1="64" x2="98" y2="64" stroke-dasharray="4,2"/>
+    
+    <!-- Target nodes (representing ports/hosts) -->
+    <circle cx="40" cy="45" r="4" fill="#ffffff"/>
+    <circle cx="88" cy="45" r="4" fill="#ffffff"/>
+    <circle cx="45" cy="85" r="4" fill="#ffffff"/>
+    <circle cx="83" cy="85" r="4" fill="#ffffff"/>
+    <circle cx="30" cy="64" r="4" fill="#ffffff"/>
+    <circle cx="98" cy="64" r="4" fill="#ffffff"/>
+  </g>
+  
+  <!-- SKY text integrated -->
+  <g fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold">
+    <text x="64" y="105" text-anchor="middle" font-size="14">SKY</text>
+    <text x="64" y="118" text-anchor="middle" font-size="8">PORTS</text>
+  </g>
+  
+  <!-- Security shield element -->
+  <g fill="none" stroke="#ffffff" stroke-width="1.5">
+    <path d="M56 50 L64 45 L72 50 L72 58 Q72 65 64 68 Q56 65 56 58 Z" fill="#ffffff" opacity="0.3"/>
+  </g>
+  
+  <!-- Port numbers decoration -->
+  <g fill="#ffffff" font-family="monospace" font-size="6" opacity="0.7">
+    <text x="42" y="42" text-anchor="middle">22</text>
+    <text x="86" y="42" text-anchor="middle">80</text>
+    <text x="47" y="88" text-anchor="middle">443</text>
+    <text x="81" y="88" text-anchor="middle">3389</text>
+  </g>
+</svg>

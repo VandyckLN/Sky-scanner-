@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#55c2d6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a9fb5;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Main background -->
+  <rect width="200" height="80" rx="10" fill="url(#skyGradient)"/>
+  
+  <!-- Sky elements -->
+  <g fill="#ffffff" opacity="0.6">
+    <!-- Clouds -->
+    <ellipse cx="25" cy="20" rx="8" ry="4"/>
+    <ellipse cx="32" cy="18" rx="6" ry="3"/>
+    <ellipse cx="160" cy="15" rx="6" ry="3"/>
+    <ellipse cx="167" cy="17" rx="7" ry="4"/>
+    
+    <!-- Stars/points -->
+    <circle cx="45" cy="25" r="1"/>
+    <circle cx="155" cy="30" r="1"/>
+    <circle cx="180" cy="20" r="1"/>
+  </g>
+  
+  <!-- Network diagram -->
+  <g stroke="#ffffff" stroke-width="2" fill="none" filter="url(#glow)">
+    <!-- Central hub -->
+    <circle cx="100" cy="40" r="8" fill="#ffffff"/>
+    
+    <!-- Primary connections -->
+    <line x1="100" y1="40" x2="70" y2="25" stroke-dasharray="6,3"/>
+    <line x1="100" y1="40" x2="130" y2="25" stroke-dasharray="6,3"/>
+    <line x1="100" y1="40" x2="70" y2="55" stroke-dasharray="6,3"/>
+    <line x1="100" y1="40" x2="130" y2="55" stroke-dasharray="6,3"/>
+    <line x1="100" y1="40" x2="60" y2="40" stroke-dasharray="6,3"/>
+    <line x1="100" y1="40" x2="140" y2="40" stroke-dasharray="6,3"/>
+    
+    <!-- Secondary connections -->
+    <line x1="100" y1="40" x2="85" y2="30" stroke-dasharray="3,2" opacity="0.7"/>
+    <line x1="100" y1="40" x2="115" y2="30" stroke-dasharray="3,2" opacity="0.7"/>
+    <line x1="100" y1="40" x2="85" y2="50" stroke-dasharray="3,2" opacity="0.7"/>
+    <line x1="100" y1="40" x2="115" y2="50" stroke-dasharray="3,2" opacity="0.7"/>
+    
+    <!-- Nodes -->
+    <circle cx="70" cy="25" r="4" fill="#ffffff"/>
+    <circle cx="130" cy="25" r="4" fill="#ffffff"/>
+    <circle cx="70" cy="55" r="4" fill="#ffffff"/>
+    <circle cx="130" cy="55" r="4" fill="#ffffff"/>
+    <circle cx="60" cy="40" r="4" fill="#ffffff"/>
+    <circle cx="140" cy="40" r="4" fill="#ffffff"/>
+    
+    <!-- Secondary nodes -->
+    <circle cx="85" cy="30" r="2" fill="#ffffff" opacity="0.8"/>
+    <circle cx="115" cy="30" r="2" fill="#ffffff" opacity="0.8"/>
+    <circle cx="85" cy="50" r="2" fill="#ffffff" opacity="0.8"/>
+    <circle cx="115" cy="50" r="2" fill="#ffffff" opacity="0.8"/>
+  </g>
+  
+  <!-- Text -->
+  <g fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold">
+    <text x="20" y="70" font-size="24">SKY</text>
+    <text x="80" y="70" font-size="16">VERIFICADOR DE PORTAS</text>
+  </g>
+  
+  <!-- Port numbers -->
+  <g fill="#ffffff" font-family="monospace" font-size="8" opacity="0.8">
+    <text x="68" y="20" text-anchor="middle">22</text>
+    <text x="132" y="20" text-anchor="middle">80</text>
+    <text x="68" y="60" text-anchor="middle">443</text>
+    <text x="132" y="60" text-anchor="middle">3389</text>
+    <text x="58" y="43" text-anchor="middle">21</text>
+    <text x="142" y="43" text-anchor="middle">53</text>
+  </g>
+  
+  <!-- Security shield -->
+  <g fill="#ffffff" opacity="0.4">
+    <path d="M92 32 L100 28 L108 32 L108 42 Q108 47 100 50 Q92 47 92 42 Z"/>
+  </g>
+</svg>

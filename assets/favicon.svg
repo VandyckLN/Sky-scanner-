@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <circle cx="8" cy="8" r="7" fill="#55c2d6"/>
+  
+  <!-- Central node -->
+  <circle cx="8" cy="8" r="2" fill="#ffffff"/>
+  
+  <!-- Connections (simplified) -->
+  <g stroke="#ffffff" stroke-width="1" fill="none" opacity="0.8">
+    <line x1="8" y1="8" x2="4" y2="4"/>
+    <line x1="8" y1="8" x2="12" y2="4"/>
+    <line x1="8" y1="8" x2="4" y2="12"/>
+    <line x1="8" y1="8" x2="12" y2="12"/>
+  </g>
+  
+  <!-- Corner nodes -->
+  <g fill="#ffffff">
+    <circle cx="4" cy="4" r="1"/>
+    <circle cx="12" cy="4" r="1"/>
+    <circle cx="4" cy="12" r="1"/>
+    <circle cx="12" cy="12" r="1"/>
+  </g>
+</svg>

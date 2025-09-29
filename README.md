@@ -34,6 +34,14 @@ Um scanner de portas avançado desenvolvido em Python para profissionais de cibe
 - **Redis** (6379), **VNC** (5900)
 - E muitos outros...
 
+### 🆕 **Nova Funcionalidade: Detecção de Sistema Operacional**
+
+- **🔍 Análise de TTL**: Identifica o SO do host baseado no Time To Live
+- **🐧 Linux/Unix**: TTL ≤ 64
+- **🪟 Windows**: TTL ≤ 128
+- **🍎 Cisco/Dispositivos de Rede**: TTL ≤ 255
+- **📊 Informações técnicas**: Exibe valor TTL para análise
+
 ## 🚀 Instalação e Uso
 
 ### 📋 Pré-requisitos
@@ -93,7 +101,7 @@ python3 verificar-port-melhorado.py
 
 ```powershell
 # Opção 1: Git (instale Git for Windows primeiro)
-git clone https://github.com/seu-usuario/sky-verificador-de-portas.git
+git clone https://github.com/VandyckLN/Sky-scanner-
 cd sky-verificador-de-portas\verificar-hashs
 
 # Opção 2: Download manual
@@ -128,6 +136,38 @@ Escolha uma opção:
 
 ### 🔧 Exemplos Práticos
 
+#### 📋 **Modelo de Portas Prontas para Copiar:**
+
+**Portas Básicas (Top 10):**
+
+```
+21,22,23,25,53,80,135,443,445,3389
+```
+
+**Portas Comuns (Top 20):**
+
+```
+21,22,23,25,53,80,110,135,139,143,443,445,993,995,1433,3306,3389,5432,5900,8080
+```
+
+**Portas Completas (50+ serviços):**
+
+```
+20,21,22,23,25,53,67,68,69,80,110,111,119,123,135,137,138,139,143,161,162,179,389,443,445,465,514,515,587,636,993,995,1080,1433,1434,1521,1723,2049,2082,2083,2086,2087,3306,3389,4443,5060,5432,5900,5901,5984,6379,6660,6661,6662,6663,6664,6665,6666,6667,6668,6669,8000,8080,8081,8443,8888,9000,9001,9090,10000
+```
+
+**Portas de Desenvolvimento:**
+
+```
+3000,3001,4000,5000,5001,8000,8080,8081,8443,8888,9000,9001,9090,3306,5432,6379,27017
+```
+
+**Portas de Segurança/Pentest:**
+
+```
+21,22,23,25,53,80,135,139,443,445,993,995,1433,3306,3389,5432,5900,8080
+```
+
 #### Exemplo 1: Scan Rápido
 
 ```
@@ -139,6 +179,8 @@ Digite o IP ou DNS: google.com
 🔍 DNS resolvido: google.com → 142.250.191.14
 🏓 Testando conectividade com 142.250.191.14...
 ✅ Host respondeu ao ping
+🔍 SO provável: 🪟 Windows (TTL ≤ 128)
+📊 TTL detectado: 112
 ```
 
 #### Exemplo 2: Scan Personalizado
@@ -146,7 +188,7 @@ Digite o IP ou DNS: google.com
 ```
 Opção: 2
 Digite o IP ou DNS: 192.168.1.1
-Digite as portas separadas por vírgula: 22,80,443,8080
+Digite as portas separadas por vírgula: 21,22,23,25,53,80,135,443,445,3389
 Mostrar portas fechadas? (s/n): n
 
 ✅ Porta 22 ABERTA - Serviço: SSH
@@ -155,7 +197,7 @@ Mostrar portas fechadas? (s/n): n
 ✅ Porta 8080 ABERTA - Serviço: HTTP-Proxy
 ```
 
-#### Exemplo 3: Teste de Conectividade
+#### Exemplo 3: Teste de Conectividade com Detecção de SO
 
 ```
 Opção: 4
@@ -164,6 +206,8 @@ Digite o IP ou DNS: 8.8.8.8
 📝 Entrada: 8.8.8.8 (IP válido)
 🏓 Testando conectividade com 8.8.8.8...
 ✅ Host respondeu ao ping
+🔍 SO provável: 🪟 Windows (TTL ≤ 128)
+📊 TTL detectado: 112
 ```
 
 ### 📄 Relatórios Gerados
@@ -183,6 +227,83 @@ Porta 443: HTTPS
 TOTAL: 2 portas abertas
 TOTAL: 17 portas fechadas
 ```
+
+## 🌐 Interface Web Dinâmica
+
+### 🎯 **NOVO:** Interface Web Moderna
+
+O SKY Verificador de Portas agora inclui uma interface web completa e responsiva para facilitar o uso em qualquer dispositivo!
+
+#### ✨ Recursos da Interface Web
+
+- **🎨 Design Responsivo**: Funciona perfeitamente em desktop, tablet e mobile
+- **⚡ Interface Dinâmica**: Validação em tempo real e feedback visual
+- **📋 Templates Prontos**: 8 conjuntos de portas para diferentes cenários
+- **🔍 Scanning Simulado**: Demonstração interativa do funcionamento
+- **📊 Resultados Visuais**: Exibição organizada com ícones e cores
+- **🌙 Tema SKY**: Design profissional com cores #55c2d6
+
+#### 🚀 Executando a Interface Web
+
+1. **Navegue para a pasta web:**
+
+   ```bash
+   cd sky-verificador-de-portas/web
+   ```
+
+2. **Abra o arquivo HTML:**
+
+   - **Método 1**: Duplo clique em `index.html`
+   - **Método 2**: Servidor local Python:
+
+     ```bash
+     # Python 3
+     python -m http.server 8000
+     # Acesse: http://localhost:8000
+
+     # Python 2
+     python -m SimpleHTTPServer 8000
+     ```
+
+3. **Estrutura dos Arquivos Web:**
+   ```
+   web/
+   ├── index.html          # Interface principal
+   ├── css/
+   │   └── style.css       # Estilos e animações
+   ├── js/
+   │   └── scanner.js      # Funcionalidade dinâmica
+   └── assets/
+       ├── sky-ports-icon.svg    # Ícones do projeto
+       ├── sky-ports-banner.svg  # Banner principal
+       └── favicon.svg           # Favicon
+   ```
+
+#### 🎯 Templates de Portas Disponíveis
+
+| Template                 | Portas                                                                            | Descrição                  |
+| ------------------------ | --------------------------------------------------------------------------------- | -------------------------- |
+| **🔥 TOP 10**            | `21,22,23,25,53,80,135,443,445,3389`                                              | Portas essenciais          |
+| **⭐ TOP 20**            | `21,22,23,25,53,80,110,135,139,143,443,445,993,995,1433,3306,3389,5432,5900,8080` | Portas comuns              |
+| **🌐 Web & HTTP**        | `80,443,8000,8080,8081,8443,8888,9000,9001,9090`                                  | Serviços web               |
+| **💾 Bancos de Dados**   | `1433,1434,3306,5432,6379,27017,1521,5984`                                        | MySQL, PostgreSQL, MongoDB |
+| **🔒 Acesso Remoto**     | `22,23,3389,5900,5901`                                                            | SSH, RDP, VNC              |
+| **🔐 Segurança/Pentest** | `21,22,23,25,53,80,135,139,443,445,993,995,1433,3306,3389,5432,5900,8080`         | Teste de penetração        |
+| **📧 Email**             | `25,110,143,465,587,993,995`                                                      | SMTP, POP3, IMAP           |
+| **💻 Desenvolvimento**   | `3000,3001,4000,5000,5001,8000,8080,8081,9000,9001,9090`                          | Servidores de dev          |
+
+#### 🛡️ Funcionalidades de Segurança Web
+
+- **Validação de Entrada**: Verifica formato de IP e DNS automaticamente
+- **Sanitização**: Previne entradas maliciosas no frontend
+- **Modo Demonstração**: Simula scans sem executar comandos reais
+- **Avisos Éticos**: Lembretes sobre uso responsável em toda interface
+
+#### ⌨️ Atalhos de Teclado
+
+- **Ctrl + Enter**: Executar scan personalizado
+- **Escape**: Cancelar operação atual
+- **Setas + Enter**: Navegação pelos templates
 
 ## 🛠️ Solução de Problemas
 
