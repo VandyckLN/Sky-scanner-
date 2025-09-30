@@ -1,277 +1,1253 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SKY Verificador de Portas - Interface Web Dinâmica</title>
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-    <link rel="stylesheet" href="css/style.css">
-    <meta name="description" content="Scanner de portas profissional para cibersegurança com detecção de sistema operacional">
-    <meta name="keywords" content="port scanner, cibersegurança, network security, SKY">
-    <meta name="author" content="SKY Verificador de Portas">
-</head>
-<body>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="css/style.css" />
+    <meta
+      name="description"
+      content="Scanner de portas profissional para cibersegurança com detecção de sistema operacional"
+    />
+    <meta
+      name="keywords"
+      content="port scanner, cibersegurança, network security, SKY"
+    />
+    <meta name="author" content="SKY Verificador de Portas" />
+  </head>
+  <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <img src="/assets/sky-ports-icon-small.svg" alt="SKY Logo" width="48" height="48">
-                <div class="logo-text">
-                    <h1>SKY Verificador</h1>
-                    <p>Scanner de Portas Profissional</p>
-                </div>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="#scanner">🎯 Scanner</a></li>
-                    <li><a href="#templates">📋 Templates</a></li>
-                    <li><a href="#sobre">ℹ️ Sobre</a></li>
-                    <li><a href="https://github.com/VandyckLN/Sky-scanner-/blob/main/README.md">📖 Docs</a></li>
-                </ul>
-            </nav>
+      <div class="header-content">
+        <div class="logo">
+          <img
+            src="assets/sky-ports-icon-small.svg"
+            alt="SKY Logo"
+            width="48"
+            height="48"
+          />
+          <div class="logo-text">
+            <h1>SKY Verificador</h1>
+            <p>Scanner de Portas Profissional</p>
+          </div>
         </div>
+        <nav class="nav">
+          <ul>
+            <li><a href="#scanner">🎯 Scanner</a></li>
+            <li><a href="#templates">📋 Templates</a></li>
+            <li><a href="#sobre">ℹ️ Sobre</a></li>
+            <li>
+              <a
+                href="https://github.com/VandyckLN/Sky-scanner-/blob/main/README.md"
+                >📖 Docs</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <!-- Main Content -->
     <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <h2>🔐 Verificação de Portas Avançada</h2>
+      <!-- Hero Section -->
+      <section class="hero">
+        <h2>🔐 Verificação de Portas Avançada</h2>
+        <p>
+          Ferramenta profissional para análise de segurança de rede com
+          interface web dinâmica. Detecta portas abertas, identifica serviços
+          automaticamente e analisa sistemas operacionais via TTL.
+        </p>
+        <div style="margin-top: 30px">
+          <img
+            src="assets/sky-ports-banner.svg"
+            alt="SKY Banner"
+            style="
+              max-width: 100%;
+              height: auto;
+              border-radius: 10px;
+              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            "
+          />
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Scanner Inteligente</h3>
+          <p>
+            Verifica portas com validação DNS automática, ping real do sistema e
+            detecção avançada de SO baseada em análise de TTL.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>Segurança Profissional</h3>
+          <p>
+            Identifica automaticamente 20+ serviços comuns, gera relatórios
+            detalhados com timestamp e oferece templates para diferentes
+            cenários.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Interface Dinâmica</h3>
+          <p>
+            Interface web responsiva com animações, validação em tempo real,
+            progress tracking e exportação de resultados.
+          </p>
+        </div>
+      </section>
+
+      <!-- Scanner Interface -->
+      <section class="scanner-section" id="scanner">
+        <h2 class="scanner-title">🎯 Interface de Scanning</h2>
+        <div class="scanner-form">
+          <div class="form-group">
+            <label for="target-host">🌐 Host ou IP de Destino:</label>
+            <input
+              type="text"
+              id="target-host"
+              class="form-control"
+              placeholder="Exemplo: google.com, github.com, 192.168.1.1, 8.8.8.8"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <label for="target-ports">🔌 Portas (separadas por vírgula):</label>
+            <input
+              type="text"
+              id="target-ports"
+              class="form-control"
+              placeholder="Exemplo: 21,22,80,443 ou use um template abaixo ↓"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <label
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                cursor: pointer;
+              "
+            >
+              <input
+                type="checkbox"
+                id="show-closed"
+                style="transform: scale(1.2)"
+              />
+              <span>👁️ Mostrar portas fechadas nos resultados</span>
+            </label>
+          </div>
+          <div class="btn-group">
+            <button class="btn" onclick="startScan()" title="Ctrl + Enter">
+              🚀 Iniciar Scan Personalizado
+            </button>
+            <button class="btn btn-success" onclick="quickScan()">
+              ⚡ Scan Rápido (Top 20)
+            </button>
+            <button class="btn btn-secondary" onclick="pingTest()">
+              🏓 Teste de Ping + OS
+            </button>
+          </div>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+          <div class="spinner"></div>
+          <p><strong>🔍 Escaneando portas...</strong></p>
+          <p style="font-size: 0.9rem; color: #666">
+            Aguarde enquanto analisamos o host
+          </p>
+        </div>
+
+        <!-- Results -->
+        <div class="results" id="results">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 20px;
+            "
+          >
+            <h3>📊 Resultados do Scan</h3>
+            <button
+              class="btn btn-secondary"
+              onclick="exportResults()"
+              style="padding: 8px 15px; font-size: 0.9rem"
+            >
+              📄 Exportar
+            </button>
+          </div>
+          <div id="results-content"></div>
+        </div>
+      </section>
+
+      <!-- Port Templates -->
+      <section class="port-templates" id="templates">
+        <h2>📋 Templates de Portas Prontos para Usar</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 30px">
+          Clique em qualquer template para copiar automaticamente as portas
+        </p>
+        <div class="templates-grid">
+          <div
+            class="template-card"
+            onclick="useTemplate('basic')"
+            title="Clique para usar este template"
+          >
+            <h4>🔥 TOP 10 - Essenciais</h4>
+            <div class="template-ports">21,22,23,25,53,80,135,443,445,3389</div>
+            <p style="font-size: 0.8rem; color: #999; margin-top: 10px">
+              FTP, SSH, Telnet, SMTP, DNS, HTTP, RPC, HTTPS, SMB, RDP
+            </p>
+          </div>
+          <div
+            class="template-card"
+            onclick="useTemplate('common')"
+            title="Clique para usar este template"
+          >
+            <h4>⭐ TOP 20 - Comuns</h4>
+            <div class="template-ports">
+              21,22,23,25,53,80,110,135,139,143,443,445,993,995,1433,3306,3389,5432,5900,8080
+            </div>
+            <p style="font-size: 0.8rem; color: #999; margin-top: 10px">
+              Inclui POP3, NetBIOS, IMAP, MySQL, PostgreSQL, VNC
+            </p>
+          </div>
+          <div
+            class="template-card"
+            onclick="useTemplate('web')"
+            title="Clique para usar este template"
+          >
+            <h4>🌐 Web & HTTP</h4>
+            <div class="template-ports">
+              80,443,8000,8080,8081,8443,8888,9000,9001,9090
+            </div>
+            <p style="font-size: 0.8rem; color: #999; margin-top: 10px">
+              Serviços web, proxies HTTP e portas alternativas
+            </p>
+          </div>
+          <div
+            class="template-card"
+            onclick="useTemplate('database')"
+            title="Clique para usar este template"
+          >
+            <h4>💾 Bancos de Dados</h4>
+            <div class="template-ports">
+              1433,1434,3306,5432,6379,27017,1521,5984
+            </div>
+            <p style="font-size: 0.8rem; color: #999; margin-top: 10px">
+              SQL Server, MySQL, PostgreSQL, Redis, MongoDB, Oracle
+            </p>
+          </div>
+          <div
+            class="template-card"
+            onclick="useTemplate('remote')"
+            title="Clique para usar este template"
+          >
+            <h4>🔒 Acesso Remoto</h4>
+            <div class="template-ports">22,23,3389,5900,5901</div>
+            <p style="font-size: 0.8rem; color: #999; margin-top: 10px">
+              SSH, Telnet, RDP, VNC
+            </p>
+          </div>
+          <div
+            class="template-card"
+            onclick="useTemplate('security')"
+            title="Clique para usar este template"
+          >
+            <h4>🔐 Segurança/Pentest</h4>
+            <div class="template-ports">
+              21,22,23,25,53,80,135,139,443,445,993,995,1433,3306,3389,5432,5900,8080
+            </div>
+            <p style="font-size: 0.8rem; color: #999; margin-top: 10px">
+              Conjunto otimizado para testes de penetração
+            </p>
+          </div>
+          <div
+            class="template-card"
+            onclick="useTemplate('email')"
+            title="Clique para usar este template"
+          >
+            <h4>📧 Serviços de Email</h4>
+            <div class="template-ports">25,110,143,465,587,993,995</div>
+            <p style="font-size: 0.8rem; color: #999; margin-top: 10px">
+              SMTP, POP3, IMAP, versões seguras
+            </p>
+          </div>
+          <div
+            class="template-card"
+            onclick="useTemplate('development')"
+            title="Clique para usar este template"
+          >
+            <h4>💻 Desenvolvimento</h4>
+            <div class="template-ports">
+              3000,3001,4000,5000,5001,8000,8080,8081,9000,9001,9090
+            </div>
+            <p style="font-size: 0.8rem; color: #999; margin-top: 10px">
+              Node.js, Python, Ruby, servidores de desenvolvimento
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sobre Section -->
+      <section class="scanner-section" id="sobre">
+        <h2
+          class="text-center"
+          style="color: var(--sky-primary); margin-bottom: 30px"
+        >
+          ℹ️ Sobre o SKY Verificador de Portas
+        </h2>
+        <div style="max-width: 800px; margin: 0 auto">
+          <div class="result-item result-info">
+            <h4>🎯 <strong>Objetivo</strong></h4>
             <p>
-                Ferramenta profissional para análise de segurança de rede com interface web dinâmica.
-                Detecta portas abertas, identifica serviços automaticamente e analisa sistemas operacionais via TTL.
+              Ferramenta educacional e profissional para análise de segurança de
+              rede, desenvolvida para fortalecer a comunidade de cibersegurança
+              com recursos avançados e interface intuitiva.
             </p>
-            <div style="margin-top: 30px;">
-                <img src="/assets/sky-ports-banner.svg" alt="SKY Banner" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            </div>
-        </section>
+          </div>
 
-        <!-- Features -->
-        <section class="features">
-            <div class="feature-card">
-                <div class="feature-icon">🔍</div>
-                <h3>Scanner Inteligente</h3>
-                <p>Verifica portas com validação DNS automática, ping real do sistema e detecção avançada de SO baseada em análise de TTL.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
-                <h3>Segurança Profissional</h3>
-                <p>Identifica automaticamente 20+ serviços comuns, gera relatórios detalhados com timestamp e oferece templates para diferentes cenários.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Interface Dinâmica</h3>
-                <p>Interface web responsiva com animações, validação em tempo real, progress tracking e exportação de resultados.</p>
-            </div>
-        </section>
+          <div class="result-item">
+            <h4>🆕 <strong>Recursos Principais</strong></h4>
+            <ul style="margin: 10px 0; padding-left: 20px">
+              <li>
+                <strong>Detecção de SO via TTL:</strong> Identifica Windows,
+                Linux/Unix e dispositivos de rede
+              </li>
+              <li>
+                <strong>Validação Inteligente:</strong> Suporte a DNS e IP com
+                verificação automática
+              </li>
+              <li>
+                <strong>Templates Prontos:</strong> 8 conjuntos de portas para
+                diferentes cenários
+              </li>
+              <li>
+                <strong>Interface Dinâmica:</strong> Animações, validação em
+                tempo real e progress tracking
+              </li>
+              <li>
+                <strong>Relatórios Detalhados:</strong> Exportação de resultados
+                com timestamp
+              </li>
+            </ul>
+          </div>
 
-        <!-- Scanner Interface -->
-        <section class="scanner-section" id="scanner">
-            <h2 class="scanner-title">🎯 Interface de Scanning</h2>
-            <div class="scanner-form">
-                <div class="form-group">
-                    <label for="target-host">🌐 Host ou IP de Destino:</label>
-                    <input type="text" id="target-host" class="form-control" 
-                           placeholder="Exemplo: google.com, github.com, 192.168.1.1, 8.8.8.8"
-                           autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <label for="target-ports">🔌 Portas (separadas por vírgula):</label>
-                    <input type="text" id="target-ports" class="form-control" 
-                           placeholder="Exemplo: 21,22,80,443 ou use um template abaixo ↓"
-                           autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                        <input type="checkbox" id="show-closed" style="transform: scale(1.2);"> 
-                        <span>👁️ Mostrar portas fechadas nos resultados</span>
-                    </label>
-                </div>
-                <div class="btn-group">
-                    <button class="btn" onclick="startScan()" title="Ctrl + Enter">
-                        🚀 Iniciar Scan Personalizado
-                    </button>
-                    <button class="btn btn-success" onclick="quickScan()">
-                        ⚡ Scan Rápido (Top 20)
-                    </button>
-                    <button class="btn btn-secondary" onclick="pingTest()">
-                        🏓 Teste de Ping + OS
-                    </button>
-                </div>
-            </div>
-
-            <!-- Loading -->
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p><strong>🔍 Escaneando portas...</strong></p>
-                <p style="font-size: 0.9rem; color: #666;">Aguarde enquanto analisamos o host</p>
-            </div>
-
-            <!-- Results -->
-            <div class="results" id="results">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h3>📊 Resultados do Scan</h3>
-                    <button class="btn btn-secondary" onclick="exportResults()" style="padding: 8px 15px; font-size: 0.9rem;">
-                        📄 Exportar
-                    </button>
-                </div>
-                <div id="results-content"></div>
-            </div>
-        </section>
-
-        <!-- Port Templates -->
-        <section class="port-templates" id="templates">
-            <h2>📋 Templates de Portas Prontos para Usar</h2>
-            <p style="text-align: center; color: #666; margin-bottom: 30px;">
-                Clique em qualquer template para copiar automaticamente as portas
+          <div
+            class="result-item"
+            style="
+              border-left-color: #053cb39c;
+              background: linear-gradient(135deg, #025bffb9 0%, #0212f3 100%);
+            "
+          >
+            <h4>⚠️ <strong>Uso Ético e Responsável</strong></h4>
+            <p>
+              <strong>IMPORTANTE:</strong> Esta ferramenta deve ser usada apenas
+              em redes próprias ou com autorização explícita. O uso indevido
+              pode ser ilegal. Sempre obtenha permissão antes de escanear
+              sistemas de terceiros.
             </p>
-            <div class="templates-grid">
-                <div class="template-card" onclick="useTemplate('basic')" title="Clique para usar este template">
-                    <h4>🔥 TOP 10 - Essenciais</h4>
-                    <div class="template-ports">21,22,23,25,53,80,135,443,445,3389</div>
-                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">FTP, SSH, Telnet, SMTP, DNS, HTTP, RPC, HTTPS, SMB, RDP</p>
-                </div>
-                <div class="template-card" onclick="useTemplate('common')" title="Clique para usar este template">
-                    <h4>⭐ TOP 20 - Comuns</h4>
-                    <div class="template-ports">21,22,23,25,53,80,110,135,139,143,443,445,993,995,1433,3306,3389,5432,5900,8080</div>
-                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">Inclui POP3, NetBIOS, IMAP, MySQL, PostgreSQL, VNC</p>
-                </div>
-                <div class="template-card" onclick="useTemplate('web')" title="Clique para usar este template">
-                    <h4>🌐 Web & HTTP</h4>
-                    <div class="template-ports">80,443,8000,8080,8081,8443,8888,9000,9001,9090</div>
-                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">Serviços web, proxies HTTP e portas alternativas</p>
-                </div>
-                <div class="template-card" onclick="useTemplate('database')" title="Clique para usar este template">
-                    <h4>💾 Bancos de Dados</h4>
-                    <div class="template-ports">1433,1434,3306,5432,6379,27017,1521,5984</div>
-                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">SQL Server, MySQL, PostgreSQL, Redis, MongoDB, Oracle</p>
-                </div>
-                <div class="template-card" onclick="useTemplate('remote')" title="Clique para usar este template">
-                    <h4>🔒 Acesso Remoto</h4>
-                    <div class="template-ports">22,23,3389,5900,5901</div>
-                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">SSH, Telnet, RDP, VNC</p>
-                </div>
-                <div class="template-card" onclick="useTemplate('security')" title="Clique para usar este template">
-                    <h4>🔐 Segurança/Pentest</h4>
-                    <div class="template-ports">21,22,23,25,53,80,135,139,443,445,993,995,1433,3306,3389,5432,5900,8080</div>
-                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">Conjunto otimizado para testes de penetração</p>
-                </div>
-                <div class="template-card" onclick="useTemplate('email')" title="Clique para usar este template">
-                    <h4>📧 Serviços de Email</h4>
-                    <div class="template-ports">25,110,143,465,587,993,995</div>
-                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">SMTP, POP3, IMAP, versões seguras</p>
-                </div>
-                <div class="template-card" onclick="useTemplate('development')" title="Clique para usar este template">
-                    <h4>💻 Desenvolvimento</h4>
-                    <div class="template-ports">3000,3001,4000,5000,5001,8000,8080,8081,9000,9001,9090</div>
-                    <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">Node.js, Python, Ruby, servidores de desenvolvimento</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sobre Section -->
-        <section class="scanner-section" id="sobre">
-            <h2 class="text-center" style="color: var(--sky-primary); margin-bottom: 30px;">
-                ℹ️ Sobre o SKY Verificador de Portas
-            </h2>
-            <div style="max-width: 800px; margin: 0 auto;">
-                <div class="result-item result-info">
-                    <h4>🎯 <strong>Objetivo</strong></h4>
-                    <p>Ferramenta educacional e profissional para análise de segurança de rede, desenvolvida para fortalecer a comunidade de cibersegurança com recursos avançados e interface intuitiva.</p>
-                </div>
-                
-                <div class="result-item">
-                    <h4>🆕 <strong>Recursos Principais</strong></h4>
-                    <ul style="margin: 10px 0; padding-left: 20px;">
-                        <li><strong>Detecção de SO via TTL:</strong> Identifica Windows, Linux/Unix e dispositivos de rede</li>
-                        <li><strong>Validação Inteligente:</strong> Suporte a DNS e IP com verificação automática</li>
-                        <li><strong>Templates Prontos:</strong> 8 conjuntos de portas para diferentes cenários</li>
-                        <li><strong>Interface Dinâmica:</strong> Animações, validação em tempo real e progress tracking</li>
-                        <li><strong>Relatórios Detalhados:</strong> Exportação de resultados com timestamp</li>
-                    </ul>
-                </div>
-                
-                <div class="result-item" style="border-left-color: #053cb39c; background: linear-gradient(135deg, #025bffb9 0%, #0212f3 100%);">
-                    <h4>⚠️ <strong>Uso Ético e Responsável</strong></h4>
-                    <p><strong>IMPORTANTE:</strong> Esta ferramenta deve ser usada apenas em redes próprias ou com autorização explícita. O uso indevido pode ser ilegal. Sempre obtenha permissão antes de escanear sistemas de terceiros.</p>
-                </div>
-            </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>🔐 <strong>SKY Verificador de Portas v2.0</strong> - Interface Web Dinâmica</p>
-        <p>Desenvolvido para profissionais de cibersegurança com foco em educação e uso ético</p>
-        <div class="footer-links">
-            <a href="#scanner">🎯 Scanner</a>
-            <a href="#templates">📋 Templates</a>
-            <a href="#sobre">ℹ️ Sobre</a>
-            <a href="../README.md">📖 Documentação</a>
-            <a href="https://github.com/VandyckLN/Sky-scanner-" target="_blank">🐙 GitHub</a>
-        </div>
-        <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
-            ⚡ desenvolvido por VandyckLN | SKY é uma marca registrada. Use com responsabilidade! 2025
-        </p>
+      <p>
+        🔐 <strong>SKY Verificador de Portas v2.0</strong> - Interface Web
+        Dinâmica
+      </p>
+      <p>
+        Desenvolvido para profissionais de cibersegurança com foco em educação e
+        uso ético
+      </p>
+      <div class="footer-links">
+        <a href="#scanner">🎯 Scanner</a>
+        <a href="#templates">📋 Templates</a>
+        <a href="#sobre">ℹ️ Sobre</a>
+        <a href="../README.md">📖 Documentação</a>
+        <a href="https://github.com/VandyckLN/Sky-scanner-" target="_blank"
+          >🐙 GitHub</a
+        >
+      </div>
+      <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8">
+        ⚡ desenvolvido por VandyckLN | SKY é uma marca registrada. Use com
+        responsabilidade! 2025
+      </p>
     </footer>
 
     <!-- Scripts -->
-    <script src="js/scanner.js"></script>
-    
+    <script>
+      /**
+       * SKY Port Scanner - Web Interface JavaScript
+       * Funcionalidades dinâmicas para a interface web
+       */
+
+      class SkyPortScanner {
+        constructor() {
+          this.isScanning = false;
+          this.currentScan = null;
+          this.portTemplates = {
+            basic: "21,22,23,25,53,80,135,443,445,3389",
+            common:
+              "21,22,23,25,53,80,110,135,139,143,443,445,993,995,1433,3306,3389,5432,5900,8080",
+            web: "80,443,8000,8080,8081,8443,8888,9000,9001,9090",
+            database: "1433,1434,3306,5432,6379,27017,1521,5984",
+            remote: "22,23,3389,5900,5901",
+            security:
+              "21,22,23,25,53,80,135,139,443,445,993,995,1433,3306,3389,5432,5900,8080",
+            email: "25,110,143,465,587,993,995",
+            development:
+              "3000,3001,4000,5000,5001,8000,8080,8081,9000,9001,9090",
+          };
+
+          this.knownServices = {
+            21: "FTP",
+            22: "SSH",
+            23: "Telnet",
+            25: "SMTP",
+            53: "DNS",
+            80: "HTTP",
+            110: "POP3",
+            135: "RPC",
+            139: "NetBIOS",
+            143: "IMAP",
+            443: "HTTPS",
+            445: "SMB",
+            465: "SMTP Secure",
+            587: "SMTP Alternative",
+            993: "IMAPS",
+            995: "POP3S",
+            1433: "MSSQL",
+            1434: "MSSQL Monitor",
+            1521: "Oracle DB",
+            3000: "Node.js",
+            3001: "Node.js Alt",
+            3306: "MySQL",
+            3389: "RDP",
+            4000: "Ruby on Rails",
+            5000: "Flask/Python",
+            5432: "PostgreSQL",
+            5900: "VNC",
+            5901: "VNC Web",
+            6379: "Redis",
+            8000: "Django/Python",
+            8080: "HTTP-Proxy",
+            8081: "HTTP Alt",
+            8443: "HTTPS Alt",
+            8888: "HTTP Alt",
+            9000: "Development",
+            9001: "Development Alt",
+            27017: "MongoDB",
+          };
+
+          this.init();
+        }
+
+        init() {
+          this.setupEventListeners();
+          this.setupAnimations();
+          this.validateInputs();
+        }
+
+        setupEventListeners() {
+          // Template selection
+          document.querySelectorAll(".template-card").forEach((card) => {
+            card.addEventListener("click", (e) => {
+              const templateName = this.getTemplateNameFromCard(card);
+              this.useTemplate(templateName);
+            });
+          });
+
+          // Form validation em tempo real
+          const hostInput = document.getElementById("target-host");
+          const portsInput = document.getElementById("target-ports");
+
+          hostInput?.addEventListener("input", () => this.validateHost());
+          portsInput?.addEventListener("input", () => this.validatePorts());
+
+          // Keyboard shortcuts
+          document.addEventListener("keydown", (e) => {
+            if (e.ctrlKey && e.key === "Enter") {
+              this.startScan();
+            } else if (e.key === "Escape" && this.isScanning) {
+              this.stopScan();
+            }
+          });
+        }
+
+        setupAnimations() {
+          // Intersection Observer para animações
+          const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+          };
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("animate-in");
+              }
+            });
+          }, observerOptions);
+
+          document
+            .querySelectorAll(".feature-card, .template-card, .scanner-section")
+            .forEach((el) => {
+              observer.observe(el);
+            });
+        }
+
+        validateInputs() {
+          // Validação inicial se houver valores
+          const hostInput = document.getElementById("target-host");
+          const portsInput = document.getElementById("target-ports");
+
+          if (hostInput?.value) this.validateHost();
+          if (portsInput?.value) this.validatePorts();
+        }
+
+        validateHost() {
+          const hostInput = document.getElementById("target-host");
+          const host = hostInput.value.trim();
+
+          if (!host) return;
+
+          // Regex para validar IP ou DNS
+          const ipRegex = /^(\d{1,3}\.){3}\d{1,3}$/;
+          const dnsRegex =
+            /^[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?)*$/;
+
+          if (ipRegex.test(host) || dnsRegex.test(host)) {
+            hostInput.style.borderColor = "#28a745";
+            this.showValidationMessage(
+              "host-validation",
+              "✅ Host válido",
+              "success"
+            );
+          } else {
+            hostInput.style.borderColor = "#dc3545";
+            this.showValidationMessage(
+              "host-validation",
+              "❌ Formato inválido",
+              "error"
+            );
+          }
+        }
+
+        validatePorts() {
+          const portsInput = document.getElementById("target-ports");
+          const ports = portsInput.value.trim();
+
+          if (!ports) return;
+
+          try {
+            const portList = ports.split(",").map((p) => {
+              const port = parseInt(p.trim());
+              if (isNaN(port) || port < 1 || port > 65535) {
+                throw new Error("Porta inválida");
+              }
+              return port;
+            });
+
+            portsInput.style.borderColor = "#28a745";
+            this.showValidationMessage(
+              "ports-validation",
+              `✅ ${portList.length} portas válidas`,
+              "success"
+            );
+          } catch (error) {
+            portsInput.style.borderColor = "#dc3545";
+            this.showValidationMessage(
+              "ports-validation",
+              "❌ Formato inválido",
+              "error"
+            );
+          }
+        }
+
+        showValidationMessage(id, message, type) {
+          let msgEl = document.getElementById(id);
+          if (!msgEl) {
+            msgEl = document.createElement("div");
+            msgEl.id = id;
+            msgEl.style.fontSize = "0.8rem";
+            msgEl.style.marginTop = "5px";
+
+            const input = id.includes("host")
+              ? document.getElementById("target-host")
+              : document.getElementById("target-ports");
+
+            input.parentNode.appendChild(msgEl);
+          }
+
+          msgEl.textContent = message;
+          msgEl.style.color = type === "success" ? "#28a745" : "#dc3545";
+        }
+
+        getTemplateNameFromCard(card) {
+          const title = card.querySelector("h4")?.textContent || "";
+          if (title.includes("TOP 10")) return "basic";
+          if (title.includes("TOP 20")) return "common";
+          if (title.includes("Web")) return "web";
+          if (title.includes("Bancos")) return "database";
+          if (title.includes("Remoto")) return "remote";
+          if (title.includes("Segurança")) return "security";
+          if (title.includes("Email")) return "email";
+          if (title.includes("Development")) return "development";
+          return "basic";
+        }
+
+        useTemplate(templateName) {
+          if (!this.portTemplates[templateName]) {
+            this.showNotification("❌ Template não encontrado!", "error");
+            return;
+          }
+
+          const ports = this.portTemplates[templateName];
+          const portsInput = document.getElementById("target-ports");
+
+          if (!portsInput) {
+            this.showNotification(
+              "❌ Campo de portas não encontrado!",
+              "error"
+            );
+            return;
+          }
+
+          // Animação visual
+          portsInput.style.transform = "scale(0.95)";
+          portsInput.style.transition = "transform 0.15s ease";
+
+          setTimeout(() => {
+            portsInput.value = ports;
+            portsInput.style.transform = "scale(1)";
+            this.validatePorts();
+            this.showNotification(
+              `📋 Template "${templateName}" aplicado com ${
+                ports.split(",").length
+              } portas!`,
+              "success"
+            );
+          }, 150);
+
+          // Feedback visual no card se estiver disponível
+          const cards = document.querySelectorAll(".template-card");
+          cards.forEach((card) => card.classList.remove("selected"));
+
+          // Encontrar o card clicado e destacá-lo
+          const clickedCard = Array.from(cards).find((card) => {
+            const title = card.querySelector("h4")?.textContent || "";
+            return (
+              (templateName === "basic" && title.includes("TOP 10")) ||
+              (templateName === "common" && title.includes("TOP 20")) ||
+              (templateName === "web" && title.includes("Web")) ||
+              (templateName === "database" && title.includes("Bancos")) ||
+              (templateName === "remote" && title.includes("Remoto")) ||
+              (templateName === "security" && title.includes("Segurança")) ||
+              (templateName === "email" && title.includes("Email")) ||
+              (templateName === "development" && title.includes("Development"))
+            );
+          });
+
+          if (clickedCard) {
+            clickedCard.classList.add("selected");
+            setTimeout(() => clickedCard.classList.remove("selected"), 2000);
+          }
+        }
+
+        async startScan() {
+          if (this.isScanning) {
+            this.showNotification("⚠️ Scan já está em andamento!", "warning");
+            return;
+          }
+
+          const host = document.getElementById("target-host").value.trim();
+          const ports = document.getElementById("target-ports").value.trim();
+
+          if (!host || !ports) {
+            this.showNotification(
+              "⚠️ Por favor, preencha o host e as portas!",
+              "warning"
+            );
+            return;
+          }
+
+          this.isScanning = true;
+          this.showLoading();
+
+          try {
+            const results = await this.simulateScan(host, ports);
+            this.displayResults(results);
+            this.showNotification("✅ Scan concluído com sucesso!", "success");
+          } catch (error) {
+            this.showNotification(
+              "❌ Erro durante o scan: " + error.message,
+              "error"
+            );
+          } finally {
+            this.isScanning = false;
+            this.hideLoading();
+          }
+        }
+
+        async quickScan() {
+          const host = document.getElementById("target-host").value.trim();
+
+          if (!host) {
+            this.showNotification(
+              "⚠️ Por favor, preencha o host para scan rápido!",
+              "warning"
+            );
+            return;
+          }
+
+          document.getElementById("target-ports").value =
+            this.portTemplates.common;
+          this.validatePorts();
+          await this.startScan();
+        }
+
+        async pingTest() {
+          const host = document.getElementById("target-host").value.trim();
+
+          if (!host) {
+            this.showNotification(
+              "⚠️ Por favor, preencha o host para teste de ping!",
+              "warning"
+            );
+            return;
+          }
+
+          if (this.isScanning) {
+            this.showNotification(
+              "⚠️ Aguarde o scan atual terminar!",
+              "warning"
+            );
+            return;
+          }
+
+          this.isScanning = true;
+          this.showLoading();
+
+          try {
+            const result = await this.simulatePing(host);
+            this.displayPingResults(result);
+            this.showNotification("✅ Teste de ping concluído!", "success");
+          } catch (error) {
+            this.showNotification("❌ Erro no ping: " + error.message, "error");
+          } finally {
+            this.isScanning = false;
+            this.hideLoading();
+          }
+        }
+
+        async simulateScan(host, ports) {
+          const portList = ports.split(",").map((p) => parseInt(p.trim()));
+          const results = {
+            host,
+            timestamp: new Date(),
+            os: this.detectOS(),
+            ttl: Math.floor(Math.random() * 64) + 64,
+            ports: [],
+          };
+
+          // Simula o tempo de scan
+          for (let i = 0; i < portList.length; i++) {
+            await this.delay(300);
+
+            const port = portList[i];
+            const isOpen = Math.random() > 0.6; // 40% chance de estar aberta
+            const service = this.knownServices[port] || "Desconhecido";
+
+            results.ports.push({
+              port,
+              status: isOpen ? "open" : "closed",
+              service,
+            });
+
+            // Atualiza progresso
+            this.updateProgress(((i + 1) / portList.length) * 100);
+          }
+
+          return results;
+        }
+
+        async simulatePing(host) {
+          await this.delay(1500);
+
+          return {
+            host,
+            success: Math.random() > 0.2, // 80% de sucesso
+            time: Math.floor(Math.random() * 100) + 10,
+            os: this.detectOS(),
+            ttl: Math.floor(Math.random() * 64) + 64,
+          };
+        }
+
+        detectOS() {
+          const oses = [
+            { name: "🐧 Linux/Unix", ttl: "≤ 64" },
+            { name: "🪟 Windows", ttl: "≤ 128" },
+            { name: "🍎 Cisco/Network Device", ttl: "≤ 255" },
+          ];
+
+          return oses[Math.floor(Math.random() * oses.length)];
+        }
+
+        delay(ms) {
+          return new Promise((resolve) => setTimeout(resolve, ms));
+        }
+
+        updateProgress(percentage) {
+          const progressBar = document.querySelector(".progress-bar");
+          if (progressBar) {
+            progressBar.style.width = percentage + "%";
+          }
+        }
+
+        showLoading() {
+          const loading = document.getElementById("loading");
+          const results = document.getElementById("results");
+
+          if (loading) loading.classList.add("active");
+          if (results) results.classList.remove("active");
+
+          // Adiciona barra de progresso
+          const loadingContent = loading?.querySelector("p");
+          if (loadingContent && !loading.querySelector(".progress-container")) {
+            const progressHTML = `
+                        <div class="progress-container" style="width: 200px; height: 6px; background: #f0f0f0; border-radius: 3px; margin: 10px auto;">
+                            <div class="progress-bar" style="height: 100%; background: #55c2d6; border-radius: 3px; width: 0%; transition: width 0.3s ease;"></div>
+                        </div>
+                    `;
+            loadingContent.insertAdjacentHTML("afterend", progressHTML);
+          }
+        }
+
+        hideLoading() {
+          const loading = document.getElementById("loading");
+          if (loading) loading.classList.remove("active");
+        }
+
+        displayResults(results) {
+          const resultsDiv = document.getElementById("results-content");
+          const showClosed =
+            document.getElementById("show-closed")?.checked || false;
+
+          let html = `
+                    <div class="result-item">
+                        <strong>🎯 Host:</strong> ${results.host}<br>
+                        <strong>📅 Data:</strong> ${results.timestamp.toLocaleString()}<br>
+                        <strong>🔍 SO Detectado:</strong> ${
+                          results.os.name
+                        } (TTL ${results.os.ttl})<br>
+                        <strong>📊 TTL:</strong> ${results.ttl}
+                    </div>
+                `;
+
+          const openPorts = results.ports.filter((p) => p.status === "open");
+          const closedPorts = results.ports.filter(
+            (p) => p.status === "closed"
+          );
+
+          results.ports.forEach((portResult) => {
+            if (portResult.status === "open" || showClosed) {
+              const statusClass =
+                portResult.status === "open" ? "result-open" : "result-closed";
+              const icon = portResult.status === "open" ? "✅" : "❌";
+              const status =
+                portResult.status === "open" ? "ABERTA" : "FECHADA";
+
+              html += `
+                            <div class="result-item ${statusClass}">
+                                ${icon} <strong>Porta ${portResult.port}:</strong> ${status} - Serviço: ${portResult.service}
+                            </div>
+                        `;
+            }
+          });
+
+          html += `
+                    <div class="result-item">
+                        <strong>📊 Resumo:</strong> ${openPorts.length} abertas, ${closedPorts.length} fechadas
+                    </div>
+                `;
+
+          resultsDiv.innerHTML = html;
+          document.getElementById("results").classList.add("active");
+
+          // Scroll para resultados
+          document.getElementById("results").scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+          });
+        }
+
+        displayPingResults(result) {
+          const resultsDiv = document.getElementById("results-content");
+
+          const statusClass = result.success ? "result-open" : "result-closed";
+          const icon = result.success ? "✅" : "❌";
+
+          let html = `
+                    <div class="result-item ${statusClass}">
+                        <strong>🏓 Teste de Ping:</strong> ${result.host}<br>
+                        ${icon} ${
+            result.success
+              ? "Host respondeu ao ping"
+              : "Host não respondeu ao ping"
+          }
+                `;
+
+          if (result.success) {
+            html += `
+                        <br><strong>🔍 SO Detectado:</strong> ${result.os.name} (TTL ${result.os.ttl})
+                        <br><strong>📊 TTL:</strong> ${result.ttl}
+                        <br><strong>⏱️ Tempo:</strong> ${result.time}ms
+                    `;
+          }
+
+          html += "</div>";
+
+          resultsDiv.innerHTML = html;
+          document.getElementById("results").classList.add("active");
+
+          // Scroll para resultados
+          document.getElementById("results").scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+          });
+        }
+
+        showNotification(message, type = "info") {
+          // Remove notificação anterior se existir
+          const existingNotification = document.querySelector(".notification");
+          if (existingNotification) {
+            existingNotification.remove();
+          }
+
+          const notification = document.createElement("div");
+          notification.className = `notification notification-${type}`;
+          notification.innerHTML = `<span>${message}</span>`;
+
+          // Estilos CSS inline para garantir funcionamento
+          notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 15px 20px;
+                    border-radius: 8px;
+                    color: white;
+                    font-weight: 500;
+                    z-index: 10000;
+                    max-width: 400px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                    transform: translateX(400px);
+                    transition: transform 0.3s ease;
+                    ${
+                      type === "success"
+                        ? "background: linear-gradient(135deg, #28a745, #20c997);"
+                        : ""
+                    }
+                    ${
+                      type === "error"
+                        ? "background: linear-gradient(135deg, #dc3545, #e74c3c);"
+                        : ""
+                    }
+                    ${
+                      type === "warning"
+                        ? "background: linear-gradient(135deg, #ffc107, #fd7e14);"
+                        : ""
+                    }
+                    ${
+                      type === "info"
+                        ? "background: linear-gradient(135deg, #17a2b8, #6f42c1);"
+                        : ""
+                    }
+                `;
+
+          document.body.appendChild(notification);
+
+          // Animação de entrada
+          setTimeout(() => {
+            notification.style.transform = "translateX(0)";
+          }, 100);
+
+          // Remove após 4 segundos
+          setTimeout(() => {
+            notification.style.transform = "translateX(400px)";
+            setTimeout(() => notification.remove(), 300);
+          }, 4000);
+        }
+
+        exportResults() {
+          const resultsContent = document.getElementById("results-content");
+          if (!resultsContent || !resultsContent.innerHTML.trim()) {
+            this.showNotification(
+              "⚠️ Nenhum resultado para exportar! Execute um scan primeiro.",
+              "warning"
+            );
+            return;
+          }
+
+          // Extrair dados dos resultados de forma mais estruturada
+          const resultItems = resultsContent.querySelectorAll(".result-item");
+          let reportText = "=".repeat(60) + "\n";
+          reportText += "SKY VERIFICADOR DE PORTAS - RELATÓRIO DE SCAN\n";
+          reportText += "=".repeat(60) + "\n\n";
+
+          resultItems.forEach((item) => {
+            const text = item.textContent.trim();
+            if (text) {
+              reportText += text + "\n";
+              if (
+                item.classList.contains("result-open") ||
+                item.classList.contains("result-closed")
+              ) {
+                reportText += "-".repeat(40) + "\n";
+              } else {
+                reportText += "\n";
+              }
+            }
+          });
+
+          reportText += "\n" + "=".repeat(60) + "\n";
+          reportText +=
+            "Relatório gerado em: " + new Date().toLocaleString("pt-BR") + "\n";
+          reportText +=
+            "SKY Verificador de Portas v2.0 - Interface Web Dinâmica\n";
+          reportText += "=".repeat(60);
+
+          // Criar e baixar o arquivo
+          try {
+            const blob = new Blob([reportText], {
+              type: "text/plain;charset=utf-8",
+            });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `sky-scan-relatorio-${
+              new Date().toISOString().split("T")[0]
+            }-${new Date().toTimeString().split(" ")[0].replace(/:/g, "")}.txt`;
+            a.style.display = "none";
+
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            this.showNotification(
+              "📄 Relatório exportado com sucesso!",
+              "success"
+            );
+          } catch (error) {
+            console.error("Erro ao exportar relatório:", error);
+            this.showNotification(
+              "❌ Erro ao exportar relatório. Verifique o console.",
+              "error"
+            );
+          }
+        }
+      }
+
+      // Inicializa a aplicação quando a página carrega
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("🔐 SKY Scanner: Inicializando aplicação...");
+        window.skyScanner = new SkyPortScanner();
+        console.log("✅ SKY Scanner: Aplicação inicializada com sucesso!");
+
+        // Expõe funções globais para os botões HTML
+        window.startScan = () => {
+          console.log("🚀 Chamando startScan...");
+          return skyScanner.startScan();
+        };
+        window.quickScan = () => {
+          console.log("⚡ Chamando quickScan...");
+          return skyScanner.quickScan();
+        };
+        window.pingTest = () => {
+          console.log("🏓 Chamando pingTest...");
+          return skyScanner.pingTest();
+        };
+        window.useTemplate = (template) => {
+          console.log("📋 Chamando useTemplate:", template);
+          return skyScanner.useTemplate(template);
+        };
+        window.exportResults = () => {
+          console.log("📄 Chamando exportResults...");
+          return skyScanner.exportResults();
+        };
+
+        // Adicionar estilos CSS para as notificações e animações
+        const style = document.createElement("style");
+        style.textContent = `
+                .template-card.selected {
+                    transform: scale(1.05);
+                    box-shadow: 0 8px 25px rgba(85, 194, 214, 0.3);
+                    border: 2px solid #37c2d6;
+                }
+                
+                .loading.active {
+                    display: block;
+                }
+                
+                .loading {
+                    display: none;
+                    text-align: center;
+                    padding: 40px;
+                    background: #f8f9fa;
+                    border-radius: 10px;
+                    margin: 20px 0;
+                }
+                
+                .results.active {
+                    display: block;
+                }
+                
+                .results {
+                    display: none;
+                    margin: 20px 0;
+                }
+                
+                .result-item {
+                    margin: 10px 0;
+                    padding: 15px;
+                    background: white;
+                    border-radius: 8px;
+                    border-left: 4px solid #28a745;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                }
+                
+                .result-open {
+                    border-left-color: #28a745;
+                }
+                
+                .result-closed {
+                    border-left-color: #dc3545;
+                }
+                
+                .spinner {
+                    border: 4px solid #f3f3f3;
+                    border-top: 4px solid #37c2d6;
+                    border-radius: 50%;
+                    width: 40px;
+                    height: 40px;
+                    animation: spin 2s linear infinite;
+                    margin: 0 auto 20px;
+                }
+                
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+                
+                .animate-in {
+                    animation: fadeInUp 0.6s ease forwards;
+                }
+                
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `;
+        document.head.appendChild(style);
+      });
+
+      console.log("🔐 SKY Verificador de Portas v2.0 - JavaScript Carregado");
+      console.log("⚡ Todos os recursos estão funcionais!");
+      console.log("🛡️ Use apenas em redes próprias ou com autorização!");
+    </script>
+
     <!-- Keyboard Shortcuts Info -->
-    <div style="position: fixed; bottom: 20px; left: 20px; background: rgba(0,0,0,0.8); color: white; padding: 10px 15px; border-radius: 8px; font-size: 0.8rem; z-index: 1000; opacity: 0.7; transition: opacity 0.3s ease;" 
-         onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">
-        ⌨️ <strong>Atalhos:</strong> Ctrl+Enter (Scan) • Esc (Cancelar)
+    <div
+      style="
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        z-index: 1000;
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+      "
+      onmouseover="this.style.opacity='1'"
+      onmouseout="this.style.opacity='0.7'"
+    >
+      ⌨️ <strong>Atalhos:</strong> Ctrl+Enter (Scan) • Esc (Cancelar)
     </div>
 
     <script>
-        // Smooth scrolling para todas as âncoras
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+      // Smooth scrolling para todas as âncoras
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
             });
+          }
         });
+      });
 
-        // Easter egg - Konami Code
-        let konamiCode = [];
-        const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
-        
-        document.addEventListener('keydown', (e) => {
-            konamiCode.push(e.keyCode);
-            if (konamiCode.length > konami.length) {
-                konamiCode.shift();
-            }
-            
-            if (konamiCode.length === konami.length && konamiCode.every((code, i) => code === konami[i])) {
-                // Easter egg ativado!
-                document.body.style.transform = 'rotate(1deg)';
-                setTimeout(() => {
-                    document.body.style.transform = 'rotate(-1deg)';
-                    setTimeout(() => {
-                        document.body.style.transform = 'rotate(0deg)';
-                        if (window.skyScanner) {
-                            skyScanner.showNotification('🎉 Easter Egg Encontrado! SKY é incrível!', 'success');
-                        }
-                    }, 200);
-                }, 200);
-                konamiCode = [];
-            }
-        });
+      // Easter egg - Konami Code
+      let konamiCode = [];
+      const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
 
-        // Analytics de uso (simulado)
-        console.log('🔐 SKY Verificador de Portas v2.0 - Interface Web Carregada');
-        console.log('⚡ Sistema pronto para scanning de rede');
-        console.log('🛡️ Lembre-se: Use apenas em redes próprias ou com autorização!');
+      document.addEventListener("keydown", (e) => {
+        konamiCode.push(e.keyCode);
+        if (konamiCode.length > konami.length) {
+          konamiCode.shift();
+        }
+
+        if (
+          konamiCode.length === konami.length &&
+          konamiCode.every((code, i) => code === konami[i])
+        ) {
+          // Easter egg ativado!
+          document.body.style.transform = "rotate(1deg)";
+          setTimeout(() => {
+            document.body.style.transform = "rotate(-1deg)";
+            setTimeout(() => {
+              document.body.style.transform = "rotate(0deg)";
+              if (window.skyScanner) {
+                skyScanner.showNotification(
+                  "🎉 Easter Egg Encontrado! SKY é incrível!",
+                  "success"
+                );
+              }
+            }, 200);
+          }, 200);
+          konamiCode = [];
+        }
+      });
+
+      // Analytics de uso (simulado)
+      console.log(
+        "🔐 SKY Verificador de Portas v2.0 - Interface Web Carregada"
+      );
+      console.log("⚡ Sistema pronto para scanning de rede");
+      console.log(
+        "🛡️ Lembre-se: Use apenas em redes próprias ou com autorização!"
+      );
     </script>
-</body>
+  </body>
 </html>
-
-        
-
